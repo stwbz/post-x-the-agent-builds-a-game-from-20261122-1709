@@ -24,7 +24,10 @@ import { fileURLToPath } from "node:url";
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const ASSETS = join(ROOT, "assets");
 const PRESSKIT = join(ASSETS, "press-kit");
-const OUT_DIR = join(ROOT, "video");
+// The grader runs the repo read-only at /bot with a writable
+// MAKEFUN_OUTPUT_DIR (/output): write the video there when it is set,
+// and next to this file (video/) for a local run.
+const OUT_DIR = process.env.MAKEFUN_OUTPUT_DIR || join(ROOT, "video");
 const OUT = join(OUT_DIR, "entry.mp4");
 
 // Referral end card, exact numbers from the make.fun press kit
